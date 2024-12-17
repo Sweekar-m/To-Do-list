@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Box, Paper, Typography, TextField, Button, List, ListItem, ListItemText, Checkbox, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-//import EmailIcon from '@mui/icons-material/Email';
 
 export default function TodoList() {
   const [task, setTask] = React.useState('');
@@ -18,6 +17,10 @@ export default function TodoList() {
       setTask('');
       // Save tasks to localStorage
       localStorage.setItem('tasks', JSON.stringify(newTasks));
+      // Show alert message
+      alert('Task added successfully!');
+    } else {
+      alert('Please enter a valid task.');
     }
   };
 
@@ -79,9 +82,9 @@ export default function TodoList() {
         >
           Add Task
         </Button>
+        
         {/* use of the list to display the check box */}
-        <List sx={{ marginTop: 2 
-        }}>
+        <List sx={{ marginTop: 2 }}>
           {tasks.map((task, index) => (
             // list item with checkbox and delete icon
             <ListItem key={index} secondaryAction={
@@ -94,7 +97,7 @@ export default function TodoList() {
                   handleDeleteTask(index);
                 }
               }}
-                >
+              >
                 <DeleteIcon />
               </IconButton> }>
               <Checkbox
@@ -104,7 +107,6 @@ export default function TodoList() {
               <ListItemText
                 primary={task.text}
                 sx={{ textDecoration: task.completed ? 'line-through' : 'none' }}
-              
               />
             </ListItem>
           ))}
@@ -112,4 +114,4 @@ export default function TodoList() {
       </Paper>
     </Box>
   );
-}
+} 
